@@ -1,0 +1,71 @@
+.ImageUpload{
+    display: flex;
+    flex-direction:column;
+    margin: 8px 0px;
+    gap: 5px;
+}
+.title{
+    font-weight: 600;
+}
+.description{
+    font-style: italic;
+}
+
+.uploadLabel{
+    display: flex;
+    flex-direction: column;
+    text-align:center;
+}
+
+.fileInput{
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+}
+
+.fileButton{
+    padding: 10px;
+    background-color: var(--main-color);
+    border-radius: 5px;
+    color: white;
+    transition: 100ms ease-in;
+    cursor: pointer;
+    position: relative;
+}
+
+.fileButton:hover{
+    background-color: var(--secondary-color);
+}
+
+.fileButton:active{
+    top: 1px;
+}
+
+.loadingBar{
+    transform:scale(.8);
+}
+
+.result{
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.imgURL{
+    display: none;
+    text-align: center;
+    font-size: small;
+    border: none;
+    resize: none;
+    height: auto;
+}
+
+.deleteButton{
+    cursor: pointer;
+    position: relative;
+}
+
+.deleteButton:hover{
+    top: 1px;
+}

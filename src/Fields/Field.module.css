@@ -1,0 +1,22 @@
+.field{
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0px;
+    width: 100%;
+}
+.label{
+    display: flex;
+    flex-direction: column;
+}
+.labelText{
+    font-weight: 600;
+}
+.labelInput{
+    padding: 5px;
+    font-size: 12pt;
+    flex-grow: 1;
+}
+
+.hidden{
+    display: none;
+}

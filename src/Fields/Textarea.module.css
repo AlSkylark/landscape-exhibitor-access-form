@@ -1,0 +1,28 @@
+.field{
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0px;
+    width: 100%;
+}
+.label{
+    display: flex;
+    flex-direction: column;
+}
+.labelText{
+    font-weight: 600;
+}
+.label textarea{
+    width: auto;
+    resize: vertical;
+    height: 200px;
+}
+.labelInput{
+    padding: 5px;
+    font-size: 12pt;
+    flex-grow: 1;
+}
+.limit{
+    font-size: small;
+    align-self: flex-end;
+    padding-right: 5px;
+}

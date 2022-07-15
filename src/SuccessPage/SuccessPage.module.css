@@ -1,0 +1,6 @@
+.big{
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform:scale(2);
+}

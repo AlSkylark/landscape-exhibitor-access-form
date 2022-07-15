@@ -1,0 +1,26 @@
+:root{
+  --ncategories: 100;
+  --main-color: #3e387d;
+  --secondary-color: #acb9df;
+  --alt-color: #284734;
+}
+
+.hidden{
+  display: none;
+}
+
+.spinner-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+}
+
+.error *{
+  color: red;
+  border-color: red;
+  border-radius: 2px;
+  
+}

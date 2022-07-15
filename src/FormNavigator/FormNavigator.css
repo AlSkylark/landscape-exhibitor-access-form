@@ -1,0 +1,26 @@
+.FormNavigator{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    height: 55px;
+    font-size: 1rem;
+    color: var(--main-color);
+    border-top: 1px solid var(--secondary-color);
+}
+
+.FormNavigator .button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    cursor:pointer;
+}
+
+.FormNavigator .button:hover{
+    background-color:aliceblue;
+}
+
+.prev{
+    border-right: 1px solid var(--secondary-color);
+}

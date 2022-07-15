@@ -1,0 +1,18 @@
+.CheckboxRadio .checkbox, .CheckboxRadio .radio{
+    display: grid;
+    grid-template-columns: .1fr 1fr;
+    gap: 5px;
+    background-color: var(--secondary-color);
+    padding: 4px;
+    cursor: pointer;
+}
+
+.checked{
+    background-color: rgb(228, 117, 117) !important;
+}
+
+.CheckboxRadio .checkbox input, .CheckboxRadio .radio input{
+    height: 20px;
+}
+
+

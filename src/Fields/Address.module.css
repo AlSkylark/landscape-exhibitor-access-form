@@ -1,0 +1,27 @@
+.joint{
+    display: flex;
+    gap: 10px;
+}
+.joint2{
+    display: grid;
+    grid-template-columns: 20% calc(80% - 10px);
+    gap: 10px;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 500px) {
+
+    .joint{
+        display: grid;
+        gap: 0;
+    }
+
+    .joint2{
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+}

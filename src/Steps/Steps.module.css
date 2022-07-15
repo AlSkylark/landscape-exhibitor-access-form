@@ -1,0 +1,31 @@
+.Steps{
+    display: flex;
+    justify-content:space-between;
+    height: 50px;
+    padding-bottom: 5px;
+    border-top: 1px solid var(--main-color);
+    border-bottom: 1px solid var(--secondary-color);
+    overflow: hidden;
+}
+
+
+@media only screen and (max-width: 750px) {
+
+    :root{
+        --current-step: 1;
+    }
+
+    .wrapper{
+        overflow: hidden;
+        width: 100vw;
+    }
+    .Steps{
+        width: calc(100vw * 5);
+        transform: translateX(calc(-100vw * (var(--current-step) - 1)));
+    }
+    
+    .Steps * {
+        border-bottom: none !important;
+    }
+}
+

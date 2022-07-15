@@ -1,0 +1,71 @@
+[
+    {
+        "image": "Guide21.png",
+        "title": "Show Guide",
+        "description": "Show Guide available to all visitors who have pre-registered before the show",
+        "included": "Company profile and picture",
+        "options": [
+            {
+                "name": "Back Cover Advert:",
+                "price": 850,
+                "value": "guideBackCover"
+            },
+            {
+                "name": "Inside Cover Advert:",
+                "price": 750,
+                "value": "guideInisdeCover"
+            },
+            {
+                "name": "Full Page Advert:",
+                "price": 450,
+                "value": "guideFullPage"
+            },
+            {
+                "name": "Enhanced Listing:",
+                "price": 200,
+                "value": "guideEnhanced"
+            }
+        ]
+    },
+    {
+        "image": "Catalogue",
+        "title": "Show Catalogue",
+        "description": "Show Catalogue available to every visitor to the show",
+        "included": "Company profile and listed under selected product headings",
+        "options": [
+            {
+                "name": "Back Cover Advert:",
+                "price": 850,
+                "value": "catalogueBackCover"
+            },
+            {
+                "name": "Inside Cover Advert:",
+                "price": 750,
+                "value": "catalogueInsideCover"
+            },
+            {
+                "name": "Full Page Advert:",
+                "price": 450,
+                "value": "catalogueFullPage"
+            },
+            {
+                "name": "Enhanced Entry:",
+                "price": 100,
+                "value": "catalogueEnhanced"
+            }
+        ]
+    },
+    {
+        "image": "Website",
+        "title": "ONLINE",
+        "description": "",
+        "included": "Listing with logo and stand number",
+        "options": [
+            {
+                "name": "Enhanced web listing",
+                "price": 50,
+                "value": "onlineEnhanced"
+            }
+        ]
+    }
+]

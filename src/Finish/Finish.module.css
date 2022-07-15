@@ -1,0 +1,48 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+.inner{
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+}
+.submit{
+    margin-top: 2%;
+    padding: 20px 50px;
+    color: white;
+    background-color: var(--main-color);
+    border: none;
+    border-radius: 5px;
+    transition: 100ms ease-in;
+    cursor: pointer;
+    position: relative;
+}
+.submit:hover{
+    background-color: var(--secondary-color);
+}
+.submit:active{
+    top: 1px;
+}
+
+.PromoWrap{
+    margin-top: 10px;
+    text-align: center;
+}
+.Promo{
+    font-size: large;
+}
+.PromoSub{
+    font-size: small;
+}
+.error{
+    font-size: larger;
+    margin: 30px 20vw 0px 20vw;
+    text-align: center;
+    font-weight: 700;
+    color: red;
+    white-space: pre-line;
+}
