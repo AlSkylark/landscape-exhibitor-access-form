@@ -16,7 +16,7 @@
 
 .header{
     display: grid;
-    grid-template-columns: 35px repeat(4, 1fr);
+    grid-template-columns: 35px repeat(4, 1fr) 35px;
     gap: 5px;
     font-weight: 700;
     color: var(--main-color);

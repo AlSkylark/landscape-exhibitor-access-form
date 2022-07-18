@@ -3,10 +3,16 @@
     color: var(--main-color);
     display: none;
 }
+.count{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--main-color);
+}
 
 .row{
     display: grid;
-    grid-template-columns: 35px repeat(4, 1fr);
+    grid-template-columns: 35px repeat(4, 1fr) 35px;
     gap: 5px;
     border-radius: 10px;
     background-color: var(--secondary-color);
@@ -17,8 +23,29 @@
     border: none;
     padding: 3px 5px;
 }
+.row input{
+    border-radius: 2px;
+    font-size:medium;
+    padding: 5px 5px;
+}
 
-@media only screen and (max-width: 750px) {
+.delete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--main-color);
+    position: relative;
+}
+
+.delete:hover{
+    color: white;
+}
+.invisible{
+    visibility: hidden;
+}
+
+@media only screen and (max-width: 900px) {
     .row{
         grid-template-columns: 1fr 1fr;
         grid-template-rows: repeat(4, 1fr);
@@ -28,15 +55,25 @@
     .header {
         display: block;
         grid-column: 1;
+        padding-left: 25px;
     }
     .row input{
         grid-column: 2;
     }
     .empty{
         position: absolute;
-        top: 0;
+        top: 3px;
+        left: 5px;
         color: white;
         font-weight: 700;
         font-size: smaller;
+    }
+    .delete{
+        position: absolute;
+        bottom: 0px;
+        left: -5px;
+    }
+    .delete span{
+        font-size: 18px;
     }
 }

@@ -1,18 +1,39 @@
+import { useState } from "react";
 import style from "./FieldRow.module.css";
 
 function FieldRow(props){
+    const [data,setData] = useState({name: "list",
+                                    type: props.id,
+                                    value: props.data|| {company: "",
+                                            fname: "",
+                                            lname: "",
+                                            mobile: ""}});
+    
+    function handleChange(e){
+        const oldData = data;
+        const newdata = {...oldData, value: {...oldData.value, [e.target.name]: e.target.value}};
+        setData(newdata);
+        props.onChange(newdata);
+    }
+
+    const invisible = !props.invisible ? "" : " "  + style.invisible;
     return (
         <div className={style.row}>
             <div className={style.header + " " + style.empty}></div>
-            <div className={style.header}>Company Name</div>
+            <div className={style.header}>Company on Badge</div>
             <div className={style.header}>First Name</div>
             <div className={style.header}>Surname</div>
             <div className={style.header}>Mobile Number</div>
-            <div className={style.empty}>{props.count}</div>
-            <input></input>
-            <input></input>
-            <input></input>
-            <input></input>
+            <div className={style.empty + " " + style.count}>{props.count}</div>
+            
+            <input onChange={handleChange} value={data.value.company} name="company" placeholder="Company on Badge"></input>
+            <input onChange={handleChange} value={data.value.fname} name="fname" placeholder="First Name"></input>
+            <input onChange={handleChange} value={data.value.lname} name="lname" placeholder="Surname"></input>
+            <input onChange={handleChange} value={data.value.mobile} name="mobile" placeholder="Mobile Number"></input>
+
+            <div className={style.delete + invisible} >
+                <span className="material-icons-round">clear</span>
+            </div>
         </div>
     );
 }

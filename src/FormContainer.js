@@ -26,7 +26,9 @@ class FormContainer extends React.Component{
             submissionStatus: 0,
             currentStep: 1,
             stepStatus: {1:true},
-            formData: {},
+            formData: {
+                list: [0]
+            },
             extras: 0
         }
 
@@ -46,19 +48,35 @@ class FormContainer extends React.Component{
     }
 
     handleChange(t){
-        this.removeErrors();
-        const target = t.target === undefined ? t : t.target;
+        //this.removeErrors();
+        const target = t.target ?? t;
         const type = target.type;
         const name = target.name;
         let value = target.value;
+ 
+        if(name === "list"){
+            const count = this.state.formData.list.length - 1;
+            if (count < type) {
+                this.setState(p =>({formData: {...p.formData, list: [...p.formData.list, value]}}));
+            } else {
+                this.setState(p => ({formData: {...p.formData, list: 
+                    p.formData.list.map((d,i) => {
+                        if(i === type) return value;
+                        return d;
+                    })
+                }}));
+            }
 
-        if (type === "checkbox" || name === "Products") value = handleCheckboxes(name);
+        } else {
+            this.setState((prevState) => ({
+                formData: {...prevState.formData, [name]: value}
+            }),() =>{
+                //window.sessionStorage.setItem("formData", JSON.stringify(this.state.formData));
+            });
+        }
+        
+        console.log(this.state.formData);
 
-        this.setState((prevState) => ({
-            formData: {...prevState.formData, [name]: value}
-        }),() =>{
-            window.sessionStorage.setItem("formData", JSON.stringify(this.state.formData));
-        });
     }
 
     handleFinish(){
@@ -156,7 +174,7 @@ class FormContainer extends React.Component{
         let step;
         switch (this.state.currentStep) {
             case 1:
-                step = <AccessForm data={this.state.formData} onChange={this.handleChange}/>
+                step = <AccessForm data={this.state.formData.list} onChange={this.handleChange}/>
                 break;
             case StepEnum.Finish: 
                 step = <Finish 
