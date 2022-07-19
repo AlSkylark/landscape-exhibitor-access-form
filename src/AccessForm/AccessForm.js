@@ -1,19 +1,26 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FieldRow from "../Fields/FieldRow";
 import style from "./AccessForm.module.css";
 
 function AccessForm(props){
-    const [fieldCount, addField] = useState(props.data.length ?? 1);
+    const {onChange, onDelete, data, onAdd} = props;
+    const count = data.length;
+    const [fields, setFields] = useState([]);
     
-    function handleAdd(){
-        addField(fieldCount + 1);
-    }
+    useEffect(() =>{
+        let fieldsArr = []
+        for (let i = 0; i < count; i++){
+            fieldsArr.push(<FieldRow key={data[i].id} id={data[i].id} 
+                        data={data[i]} 
+                        onChange={onChange} 
+                        invisible={count === 1} 
+                        count={i}
+                        onDelete={onDelete} />);
+        }
+        setFields(fieldsArr);
+    },[count, onChange, onDelete, data])
     
-    let fields = [];
-    for (let i = 0; i < fieldCount; i++){
-        fields.push(<FieldRow key={i} id={i} data={props.data[i]} onChange={props.onChange} invisible={fieldCount === 1} count={i + 1}/>);
-    }
 
     return (
         <div className={style.wrapper}>
@@ -31,7 +38,9 @@ function AccessForm(props){
                 </div>
                 {fields}
             </div>
-            <div><button onClick={handleAdd}>Add More</button></div>
+            <div>
+                <button className={style.add} onClick={onAdd}>Add More</button>
+            </div>
         </div>
 
     );

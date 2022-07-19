@@ -2,12 +2,10 @@ import { useState } from "react";
 import style from "./FieldRow.module.css";
 
 function FieldRow(props){
+    const id = props.id;
     const [data,setData] = useState({name: "list",
-                                    type: props.id,
-                                    value: props.data|| {company: "",
-                                            fname: "",
-                                            lname: "",
-                                            mobile: ""}});
+                                    type: id,
+                                    value: props.data});
     
     function handleChange(e){
         const oldData = data;
@@ -17,6 +15,7 @@ function FieldRow(props){
     }
 
     const invisible = !props.invisible ? "" : " "  + style.invisible;
+    
     return (
         <div className={style.row}>
             <div className={style.header + " " + style.empty}></div>
@@ -24,7 +23,7 @@ function FieldRow(props){
             <div className={style.header}>First Name</div>
             <div className={style.header}>Surname</div>
             <div className={style.header}>Mobile Number</div>
-            <div className={style.empty + " " + style.count}>{props.count}</div>
+            <div className={style.empty + " " + style.count}>{props.count + 1}</div>
             
             <input onChange={handleChange} value={data.value.company} name="company" placeholder="Company on Badge"></input>
             <input onChange={handleChange} value={data.value.fname} name="fname" placeholder="First Name"></input>
@@ -32,7 +31,7 @@ function FieldRow(props){
             <input onChange={handleChange} value={data.value.mobile} name="mobile" placeholder="Mobile Number"></input>
 
             <div className={style.delete + invisible} >
-                <span className="material-icons-round">clear</span>
+                <span className="material-icons-round" onClick={() => props.onDelete(id)}>clear</span>
             </div>
         </div>
     );

@@ -27,6 +27,23 @@
 .header * {
     padding: 3px 5px;
 }
+.add{
+    font-size: medium;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: var(--main-color);
+    cursor: pointer;
+    transition: 100ms ease-in;
+}
+.add:hover{
+    background-color: var(--alt-color);
+}
+
+.add:active{
+    transform: translateY(1px);
+}
 
 @media only screen and (max-width: 750px) {
     .header {

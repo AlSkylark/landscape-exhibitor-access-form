@@ -27,9 +27,16 @@ class FormContainer extends React.Component{
             currentStep: 1,
             stepStatus: {1:true},
             formData: {
-                list: [0]
-            },
-            extras: 0
+                list: [
+                        {
+                            id: 0,
+                            company: "",
+                            fname: "",
+                            lname: "",
+                            mobile: ""
+                        }
+                    ]
+            }
         }
 
         this.MAX_STEP = 1;
@@ -39,7 +46,8 @@ class FormContainer extends React.Component{
         this.stepClick = this.stepClick.bind(this); 
         this.navigationClick = this.navigationClick.bind(this); 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handlePriceChange = this.handlePriceChange.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
     }
 
     componentDidMount(){
@@ -54,32 +62,40 @@ class FormContainer extends React.Component{
         const name = target.name;
         let value = target.value;
  
+        //when dealing with the list items we check if the count is more than the id (stored in type), if it is then we just add onto the formData.list state,
+        //if it isn't then we need to modify the existing data using a map
         if(name === "list"){
-            const count = this.state.formData.list.length - 1;
-            if (count < type) {
-                this.setState(p =>({formData: {...p.formData, list: [...p.formData.list, value]}}));
+            const id = type;
+            const exists = this.state.formData.list.find(item => item.id === id);
+            
+            if (exists === undefined) {
+                this.setState(p =>({formData: {...p.formData, list: [...p.formData.list, value]}}),() => this.saveSession(this.state.formData));
             } else {
                 this.setState(p => ({formData: {...p.formData, list: 
-                    p.formData.list.map((d,i) => {
-                        if(i === type) return value;
+                    p.formData.list.map(d => {
+                        if(d.id === id ) return value;
                         return d;
                     })
-                }}));
+                }}),() => this.saveSession(this.state.formData));
             }
-
+        //if it's not a list item, it just saves the item the same way it would on the normal exhibitor form.
         } else {
             this.setState((prevState) => ({
                 formData: {...prevState.formData, [name]: value}
-            }),() =>{
-                //window.sessionStorage.setItem("formData", JSON.stringify(this.state.formData));
-            });
+            }),() =>this.saveSession(this.state.formData));
         }
-        
-        console.log(this.state.formData);
 
+        console.log(this.state.formData);
     }
 
     handleFinish(){
+        const data = this.state.formData.list;
+        if(data.length !== 0){
+            if (!data[0].company.length > 0 ||
+                !data[0].fname.length > 0 ||
+                !data[0].lname.length > 0)
+            return;
+        }
         this.setState({currentStep: StepEnum.Finish});
     }
 
@@ -114,9 +130,34 @@ class FormContainer extends React.Component{
             })
 
     }
+    
+    handleDelete(id){
+        this.setState(p => ({formData: 
+            {...p.formData, list: p.formData.list.filter(d => d.id !== id)}
+        }), () => {
+            this.saveSession(this.state.formData);
+            this.state.formData = this.state.formData;
+        });
+    }
+    
+    handleAdd(){
+        this.setState(p => {
+            const lastList = p.formData.list[p.formData.list.length - 1];
+            const lastId = lastList.id;
+            const template = {
+                id: lastId + 1,
+                company: lastList.company,
+                fname: "",
+                lname: "",
+                mobile: ""
+            }
+            const newData = {formData: {...p.formData, list:[...p.formData.list, template]}};
+            return newData;
+        });
+    }
 
-    handlePriceChange(price){
-        this.setState({extras: price});
+    saveSession(data){
+        window.sessionStorage.setItem("formData", JSON.stringify(data));
     }
 
     stepClick(e){
@@ -124,7 +165,6 @@ class FormContainer extends React.Component{
         const target = parseInt(e.target.getAttribute("value"));
         if (!this.state.stepStatus[target]) return;
         this.setState({currentStep: target });
-        console.log(this.state.formData);
     }
 
     navigationClick(next, e = null){
@@ -170,11 +210,15 @@ class FormContainer extends React.Component{
     }
 
 
+
     render() {
         let step;
         switch (this.state.currentStep) {
             case 1:
-                step = <AccessForm data={this.state.formData.list} onChange={this.handleChange}/>
+                step = <AccessForm onDelete={this.handleDelete} 
+                                data={this.state.formData.list} 
+                                onChange={this.handleChange}
+                                onAdd={this.handleAdd}/>
                 break;
             case StepEnum.Finish: 
                 step = <Finish 
