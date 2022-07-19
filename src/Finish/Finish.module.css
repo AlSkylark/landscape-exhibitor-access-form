@@ -46,3 +46,7 @@
     color: red;
     white-space: pre-line;
 }
+
+.description{
+    text-align: center;
+}

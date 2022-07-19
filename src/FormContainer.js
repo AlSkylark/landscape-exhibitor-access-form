@@ -55,9 +55,13 @@ class FormContainer extends React.Component{
         if (sessionData !== null) this.setState({formData: JSON.parse(sessionData)});
     }
 
-    handleChange(t){
-        //this.removeErrors();
+    handleChange(t, element = null){
         const target = t.target ?? t;
+        if(target.tagName === undefined){
+            this.removeErrors(element);
+        } else {
+            this.removeErrors();
+        }
         const type = target.type;
         const name = target.name;
         let value = target.value;
@@ -85,7 +89,6 @@ class FormContainer extends React.Component{
             }),() =>this.saveSession(this.state.formData));
         }
 
-        console.log(this.state.formData);
     }
 
     handleFinish(){
@@ -136,7 +139,6 @@ class FormContainer extends React.Component{
             {...p.formData, list: p.formData.list.filter(d => d.id !== id)}
         }), () => {
             this.saveSession(this.state.formData);
-            this.state.formData = this.state.formData;
         });
     }
     
@@ -190,10 +192,16 @@ class FormContainer extends React.Component{
         let found = false;
         for (const required of listOfRequired) {
             required.classList.remove("error");
-            let input = required.querySelector("input");
+            let input = required.tagName === "INPUT" ? required : required.querySelector("input");
             if (input === null || input.type === "file") input = required.querySelector("textarea");
             const name = input.name;
-            if (data[name]?.length > 0) continue;
+            if(name === "company" || name === "fname" || name === "lname") {
+                const id = input.getAttribute("cid");
+                if (data.list.find(i => i.id === parseInt(id))[name]?.length > 0) continue;
+            } else {
+                if (data[name]?.length > 0) continue;
+            }
+            
             required.classList.add("error");
             found = true;
         }
@@ -201,12 +209,17 @@ class FormContainer extends React.Component{
         return true;
     }
 
-    removeErrors(){
-        const errors = document.querySelectorAll(".error");
-        if (errors === undefined) return;
-        for (let error of errors) {
-            error.classList.remove("error");            
+    removeErrors(target){
+        if (target === undefined) {
+            const errors = document.querySelectorAll(".error");
+            if (errors === undefined) return;
+            for (let error of errors) {
+                error.classList.remove("error");            
+            }
+        } else {
+            target.classList.remove("error");
         }
+
     }
 
 

@@ -22,5 +22,8 @@
   color: red;
   border-color: red;
   border-radius: 2px;
-  
+}
+input.error{
+  color: red;
+  border: 1px solid red;
 }
