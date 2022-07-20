@@ -52,7 +52,7 @@ class FormContainer extends React.Component{
 
     componentDidMount(){
         const sessionData = window.sessionStorage.getItem("formData");
-        if (sessionData !== null) this.setState({formData: JSON.parse(sessionData)});
+        if (sessionData !== null && sessionData !== undefined) this.setState({formData: JSON.parse(sessionData)});
     }
 
     handleChange(t, element = null){
@@ -114,7 +114,7 @@ class FormContainer extends React.Component{
             formData.append(item, value);
         }
 
-        const url = "http://exhibitor.landscapeshow.co.uk/submit.php";
+        const url = "http://exhibitor.landscapeshow.co.uk/submit.php?type=access";
         fetch(url, {method: "POST", body: formData})
             .then((r) => {
                 if(r.status === 201) return r.json();

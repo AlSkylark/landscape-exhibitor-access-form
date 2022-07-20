@@ -23,7 +23,7 @@ function Finish(props){
             <div className={style.description}>
                 <i>
                 <p>By completing this form it is agreed that everybody named for access will comply to the Site Rules in place for the show.<br/>
-                <a href="https://www.landscapeshow.co.uk/exhibitor-info-2022">View the Site Rules here.</a></p>
+                <a href="https://www.landscapeshow.co.uk/exhibitor-info-2022" target="_blank"  rel="noreferrer">View the Site Rules here.</a></p>
                 <b>No badges will be sent to you before you arrive.</b>
                 <p>The badges you order should be collected <b>from the Organisers Office</b> (at the front of the hall) when you arrive for Build Up.</p>
                 </i>
