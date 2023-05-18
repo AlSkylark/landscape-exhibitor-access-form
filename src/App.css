@@ -1,15 +1,15 @@
-:root{
+:root {
   --ncategories: 100;
-  --main-color: #3e387d;
-  --secondary-color: #acb9df;
-  --alt-color: #284734;
+  --main-color: #006972;
+  --secondary-color: #a9e0cb;
+  --alt-color: #79ced1;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
-.spinner-container{
+.spinner-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,12 +18,13 @@
   left: 50%;
 }
 
-.error *{
+.error * {
   color: red;
   border-color: red;
   border-radius: 2px;
 }
-input.error{
+
+input.error {
   color: red;
   border: 1px solid red;
 }
