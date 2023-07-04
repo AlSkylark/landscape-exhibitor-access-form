@@ -26,7 +26,7 @@ function Finish(props) {
             By completing this form it is agreed that everybody named for access will comply to the Site Rules in place for the show.
             <br />
             <label className={style.rules + " required"}>
-              <input type="checkbox" name="SiteRules" defaultChecked={props.data} onChange={props.onChange} />
+              <input type="checkbox" name="SiteRules" defaultChecked={props.data["SiteRules"]} onChange={props.onChange} />
               <span>* I confirm I have read the Site Rules.</span>
               <a href="https://cdn.asp.events/CLIENT_Landscap_58454EAB_5056_B733_49195F65D3B24095/sites/Landscape2019/media/Exhibitor-Info-2023/Site-Rules.pdf" target="_blank" rel="noreferrer">
                 View the Site Rules here.

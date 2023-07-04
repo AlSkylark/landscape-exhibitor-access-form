@@ -98,7 +98,7 @@ class FormContainer extends React.Component {
         }),
         () => {
           this.saveSession(this.state.formData);
-          console.log(this.state.formData);
+          //console.log(this.state.formData);
         }
       );
     }
