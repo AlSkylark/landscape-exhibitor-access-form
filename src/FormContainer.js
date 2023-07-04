@@ -63,7 +63,7 @@ class FormContainer extends React.Component {
     }
     const type = target.type;
     const name = target.name;
-    let value = target.value;
+    let value = type === "checkbox" ? target.checked : target.value;
 
     //when dealing with the list items we check if the count is more than the id (stored in type), if it is then we just add onto the formData.list state,
     //if it isn't then we need to modify the existing data using a map
@@ -96,7 +96,10 @@ class FormContainer extends React.Component {
         prevState => ({
           formData: { ...prevState.formData, [name]: value },
         }),
-        () => this.saveSession(this.state.formData)
+        () => {
+          this.saveSession(this.state.formData);
+          console.log(this.state.formData);
+        }
       );
     }
   }
@@ -209,6 +212,8 @@ class FormContainer extends React.Component {
       if (name === "company" || name === "fname" || name === "lname") {
         const id = input.getAttribute("cid");
         if (data.list.find(i => i.id === parseInt(id))[name]?.length > 0) continue;
+      } else if (input.type === "checkbox") {
+        if (data[name]) continue;
       } else {
         if (data[name]?.length > 0) continue;
       }

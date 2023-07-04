@@ -1,16 +1,18 @@
-.wrapper{
+.wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
     position: relative;
 }
-.inner{
+
+.inner {
     display: flex;
     flex-direction: column;
     width: 60vw;
 }
-.submit{
+
+.submit {
     margin-top: 2%;
     padding: 20px 50px;
     color: white;
@@ -21,24 +23,31 @@
     cursor: pointer;
     position: relative;
 }
-.submit:hover{
+
+.submit:hover {
     background-color: var(--secondary-color);
 }
-.submit:active{
+
+.submit:active {
     top: 1px;
 }
 
-.PromoWrap{
+
+
+.PromoWrap {
     margin-top: 10px;
     text-align: center;
 }
-.Promo{
+
+.Promo {
     font-size: large;
 }
-.PromoSub{
+
+.PromoSub {
     font-size: small;
 }
-.error{
+
+.error {
     font-size: larger;
     margin: 30px 20vw 0px 20vw;
     text-align: center;
@@ -47,6 +56,20 @@
     white-space: pre-line;
 }
 
-.description{
+.description {
     text-align: center;
+}
+
+.rules {
+    display: flex;
+    justify-content: center;
+}
+
+.rules input {
+    width: 20px;
+    height: 20px;
+}
+
+.rules a {
+    margin-left: 5px;
 }
